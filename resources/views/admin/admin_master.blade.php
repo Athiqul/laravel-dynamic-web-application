@@ -48,7 +48,11 @@
             <!-- Start right Content here -->
             <!-- ============================================================== -->
             <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
                         @yield('content')
+                    </div>
+                </div>
             </div>
             <!-- end main content-->
               @include('admin.contents.footer')

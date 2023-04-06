@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\user;
+use App\Http\Controllers\admin\AdminUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 //Admin Routes
-Route::controller(user::class)->group(function(){
-     Route::get('/logout','destroy')->name('logout');
+Route::controller(AdminUser::class)->group(function(){
+    Route::get('/dashboard','index')->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/admin-profile','profile')->name('admin.profile');
+    Route::get('/admin-profile-edit','profileEdit')->name('admin.profile.edit');
+    Route::post('/admin-profile-update','update')->name('admin.profile.update');
+    Route::get('/logout','destroy')->name('logout');
 });
 
 Route::middleware('auth')->group(function () {
