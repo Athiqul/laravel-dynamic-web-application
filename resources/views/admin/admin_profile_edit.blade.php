@@ -71,4 +71,5 @@ function previewImage(event) {
 
 }
 </script>
+
 @endsection

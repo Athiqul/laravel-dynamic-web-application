@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 
@@ -13,7 +14,7 @@ class AdminUser extends Controller
        public function index(){
         $id=Auth::user()->id;
           $data=User::find($id);
-        return view('admin.dashboard',compact('adminInfo'));
+        return view('admin.dashboard',compact('data'));
        }
        public function profileEdit()
        {
@@ -46,7 +47,13 @@ class AdminUser extends Controller
              }
 
              $info->save();
-             return redirect()->route('admin.profile');
+             return redirect()->route('admin.profile')->with(['alert-type'=>'success','message'=>'Successfully Profile updated!']);
+        }
+
+        //admin password change
+
+        public function changePassword(){
+            return view('admin.password_change');
         }
 
         public function destroy(Request $request): RedirectResponse
@@ -57,7 +64,40 @@ class AdminUser extends Controller
 
             $request->session()->regenerateToken();
 
-            return redirect('/login');
+            return redirect('/login')->with(['alert-type'=>'warning','message'=>'You are logged out!']);
+        }
+
+
+        //password verify and store
+        public function passwordStore(Request $request)
+        {
+            //validation
+            $request->validate(
+                [
+                    "old_password"=>"required",
+                    "new_password"=>"required",
+                    "confirm_password"=>"required|same:new_password"
+                ]
+            ) ;
+
+            $getUserPassword= Auth::user()->password;
+
+            if(Hash::check($request->old_password, $getUserPassword)){
+
+                $getUser=User::find(Auth::user()->id);
+                $getUser->password=bcrypt($request->new_password);
+                $getUser->save();
+                Auth::guard('web')->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+                return redirect('/login')->with(['alert-type'=>'info','message'=>'Your password Updated Please login with your new password']);
+
+            }else{
+                return redirect()->back()->with(['alert-type'=>'warning','message'=>'Your old password is wrong']);
+            }
+
         }
 
 }
