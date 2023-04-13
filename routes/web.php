@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminUser;
+use App\Http\Controllers\guest\homesliders;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\admin\AdminUser;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.index');
 });
 
 
@@ -30,6 +31,11 @@ Route::controller(AdminUser::class)->group(function(){
     Route::get('/admin-password-change','changePassword')->name('admin.change.password');
     Route::post('/admin-password-store','passwordStore')->name('admin.password.store');
     Route::get('/logout','destroy')->name('logout');
+});
+
+Route::middleware('auth')->group(function(){
+    Route::get('/admin-home-slider',[homesliders::class,'fetchSlide'])->name('home.slider');
+    Route::post('/admin-home-slider',[homesliders::class,'homeSliderStore'])->name('homeslider.store');
 });
 
 Route::middleware('auth')->group(function () {

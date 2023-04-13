@@ -42,7 +42,7 @@ class AdminUser extends Controller
              {
                 $file=$request->file('image');
                 $filename=date('YmdHi').$file->getClientOriginalName();
-                $file->move(public_path('upload/profile'),$filename);
+                $file->move(public_path('upload/profile/'),$filename);
                 $info->profile_image=$filename;
              }
 
