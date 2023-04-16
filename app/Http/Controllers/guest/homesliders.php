@@ -5,8 +5,7 @@ namespace App\Http\Controllers\guest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\homeslider;
-use Illuminate\Validation\Rules\Unique;
-
+use Intervention\Image\Facades\Image as Resize;
 class homesliders extends Controller
 {
     //fetch home slider
@@ -33,7 +32,7 @@ class homesliders extends Controller
               $request->validate([
                 'title'=>'required',
                 'short_desc'=>'required',
-                'image_link'=>'required'
+                'image_link'=>'image|mimes:jpeg,png,jpg|max:2048'
               ]);
 
               $exist=homeslider::latest()->first();
@@ -44,8 +43,12 @@ class homesliders extends Controller
               {
                 
                 $file=$request->file('image_link');
-                $image_name=md5(uniqid()).$file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path('upload/home/'.$image_name));
+                $image_name=md5(uniqid()).'.'.$file->extension();
+                $path=public_path('uploads/home/');
+                !is_dir($path) &&
+                 mkdir($path, 0777, true);
+                Resize::make($file)->resize(600,800)->save($path.$image_name);
+               
 
               }
                
