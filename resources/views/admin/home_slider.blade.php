@@ -32,7 +32,7 @@
                 <div class="row mb-3">
                     <label for="image" class="col-sm-2 col-form-label">Slider Image</label>
                     <div class="col-sm-10">
-                        <input class="form-control" onchange="previewImage(event)" type="file" name="image_link" value="{{$data->image_link?asset('uploads/home/'.$data->image_link):''}}"   id="image">
+                        <input class="form-control" onchange="previewImage(event)" type="file" name="image_link"   id="image">
                     </div>
                 </div>
                 <div class="row mb-3">

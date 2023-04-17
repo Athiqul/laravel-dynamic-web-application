@@ -38,16 +38,22 @@ class homesliders extends Controller
               $exist=homeslider::latest()->first();
 
               
-               $image_name='';
+               $image_name=null;
               if($request->file('image_link'))
               {
                 
                 $file=$request->file('image_link');
-                $image_name=md5(uniqid()).'.'.$file->extension();
+                if ($file->isValid())
+                {
+                  $image_name=md5(uniqid()).'.'.$file->extension();
                 $path=public_path('uploads/home/');
                 !is_dir($path) &&
                  mkdir($path, 0777, true);
                 Resize::make($file)->resize(600,800)->save($path.$image_name);
+                }else{
+
+                }
+                
                
 
               }
@@ -70,7 +76,7 @@ class homesliders extends Controller
               else{
                     $exist->title=$request->title;
                     $exist->short_desc=$request->short_desc;
-                    $exist->image_link=$image_name;
+                    $exist->image_link=$image_name??$exist->image_link;
                     $exist->video_url=$request->video_url;
                     $exist->save();
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminUser;
 use App\Http\Controllers\guest\homesliders;
+use App\Http\Controllers\frontend\Home;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,9 @@ use App\Http\Controllers\guest\homesliders;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.index');
+// Frontend Routes
+Route::controller(Home::class)->group(function(){
+   Route::get('/','index');
 });
 
 
