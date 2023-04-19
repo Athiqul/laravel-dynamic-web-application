@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminUser;
 use App\Http\Controllers\guest\homesliders;
 use App\Http\Controllers\frontend\Home;
-
+use App\Http\Controllers\guest\About;
+use App\Http\Controllers\frontend\About as frontAbout;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,10 @@ use App\Http\Controllers\frontend\Home;
 // Frontend Routes
 Route::controller(Home::class)->group(function(){
    Route::get('/','index');
+
 });
+
+Route::get('/about',[frontAbout::class,'index']);
 
 
 
@@ -38,6 +42,8 @@ Route::controller(AdminUser::class)->group(function(){
 Route::middleware('auth')->group(function(){
     Route::get('/admin-home-slider',[homesliders::class,'fetchSlide'])->name('home.slider');
     Route::post('/admin-home-slider',[homesliders::class,'homeSliderStore'])->name('homeslider.store');
+    Route::get('/add-about-info',[About::class,'about'])->name('about.info.page');
+    Route::post('/add-about-info',[About::class,'storeAbout'])->name('store.about');
 });
 
 Route::middleware('auth')->group(function () {

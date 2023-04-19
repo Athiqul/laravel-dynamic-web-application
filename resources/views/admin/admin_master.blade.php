@@ -28,6 +28,8 @@
         <!-- App Css-->
         <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+        <!--Required CSS-->
+        @yield('needed-css')
 
     </head>
     <body data-topbar="dark">
@@ -119,6 +121,9 @@
             }
             @endif
            </script>
+
+           <!--Custom JS-->
+           @yield('custom-js')
     </body>
 
 </html>

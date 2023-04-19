@@ -26,12 +26,12 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>Email</span>
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Page</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox.html">Inbox</a></li>
-                        <li><a href="email-read.html">Read Email</a></li>
+                        <li><a href="{{route('about.info.page')}}">Add About</a></li>
+                       
                     </ul>
                 </li>
 
