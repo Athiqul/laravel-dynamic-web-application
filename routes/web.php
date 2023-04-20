@@ -28,7 +28,7 @@ Route::get('/about',[frontAbout::class,'index']);
 
 
 
-//Admin Routes
+//Admin Routes profile
 Route::controller(AdminUser::class)->group(function(){
     Route::get('/dashboard','index')->middleware(['auth', 'verified'])->name('dashboard');
     Route::get('/admin-profile','profile')->name('admin.profile');
@@ -39,11 +39,19 @@ Route::controller(AdminUser::class)->group(function(){
     Route::get('/logout','destroy')->name('logout');
 });
 
+//admin activity routes
 Route::middleware('auth')->group(function(){
     Route::get('/admin-home-slider',[homesliders::class,'fetchSlide'])->name('home.slider');
     Route::post('/admin-home-slider',[homesliders::class,'homeSliderStore'])->name('homeslider.store');
     Route::get('/add-about-info',[About::class,'about'])->name('about.info.page');
     Route::post('/add-about-info',[About::class,'storeAbout'])->name('store.about');
+    Route::get('/add-skills-images',[About::class,'addSkillImages'])->name('add.skills.images');
+    Route::post('/add-skills-images',[About::class,'storeSkillImages'])->name('store.skills.images');
+    Route::get('/all-skills-images',[About::class,'allSkillImages'])->name('all.skill.images');
+    Route::get('/edit-skill-image/{id}',[About::class,'editSkillImage'])->name('edit.skill.image');
+    Route::post('update-skill-image/{id}',[About::class,'updateSkillImage'])->name('update.skill.image');
+    Route::get('status-skill-image/{id}',[About::class,'activeHide'])->name('status.change.image');
+    Route::get('delete-skill-image/{id}',[About::class,'deleteSkillImage'])->name('delete.skill.image');
 });
 
 Route::middleware('auth')->group(function () {

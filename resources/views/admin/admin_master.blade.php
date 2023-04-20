@@ -63,9 +63,7 @@
         </div>
         <!-- END layout-wrapper -->
 
-        <!-- Right Sidebar -->
-          @include('admin.contents.right_sidebar')
-        <!-- /Right-bar -->
+        
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>

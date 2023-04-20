@@ -21,14 +21,15 @@
             </div>
         </div>
         <div class="breadcrumb__wrap__icon">
+            @if ($images!==null)
+           
             <ul>
-                <li><img src="assets/img/icons/breadcrumb_icon01.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon02.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon03.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon04.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon05.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon06.png" alt=""></li>
-            </ul>
+                @foreach ($images as $item)
+                <li><img src="{{asset('uploads/about/skills/'.$item->image_link)}}" alt=""></li>
+                @endforeach               
+            </ul>              
+            @endif
+           
         </div>
     </section>
     <!-- breadcrumb-area-end -->
@@ -39,7 +40,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="about__image">
-                        <img src="assets/img/images/about_img.png" alt="">
+                        <img src="{{asset('uploads/about/'.$about->image_link)}}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6">

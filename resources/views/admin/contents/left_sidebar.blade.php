@@ -31,7 +31,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('about.info.page')}}">Add About</a></li>
-                       
+                        <li><a href="{{route('add.skills.images')}}">Add Skill Images</a></li>
+                        <li><a href="{{route('all.skill.images')}}">About Skill Images</a></li>
                     </ul>
                 </li>
 

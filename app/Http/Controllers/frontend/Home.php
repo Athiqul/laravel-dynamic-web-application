@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\homeslider;
 use App\Models\AboutInfo;
+use App\Models\skillImages;
 
 class Home extends Controller
 {
@@ -15,7 +16,10 @@ class Home extends Controller
         $homeSlider=homeslider::latest()->first();
         //get About portion on home Page
         $about=AboutInfo::latest()->first();
+        //SEND About images
+        $skillImages=skillImages::where('status','=','1')->get();
+
        
-        return view('guest.index',['home_slider'=>$homeSlider,'about'=>$about]);
+        return view('guest.index',['home_slider'=>$homeSlider,'about'=>$about,'aboutImages'=>$skillImages]);
     }
 }
