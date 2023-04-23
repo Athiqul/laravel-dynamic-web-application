@@ -7,6 +7,7 @@ use App\Http\Controllers\guest\homesliders;
 use App\Http\Controllers\frontend\Home;
 use App\Http\Controllers\guest\About;
 use App\Http\Controllers\frontend\About as frontAbout;
+use App\Http\Controllers\guest\project;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +53,16 @@ Route::middleware('auth')->group(function(){
     Route::post('update-skill-image/{id}',[About::class,'updateSkillImage'])->name('update.skill.image');
     Route::get('status-skill-image/{id}',[About::class,'activeHide'])->name('status.change.image');
     Route::get('delete-skill-image/{id}',[About::class,'deleteSkillImage'])->name('delete.skill.image');
+
+
+    Route::get('/add-portofolio',[project::class,'create'])->name('add.portofolio');
+    Route::post('/add-portofolio',[project::class,'storeProject'])->name('store.portofolio');
+    Route::get('/portofolio-list',[project::class,'index'])->name('list.portofolio');
+    Route::get('/portofolio-show/{id}',[project::class,'show'])->name('show.portofolio');
+    Route::get('/portofolio-edit/{id}',[project::class,'edit'])->name('edit.portofolio');
+    Route::post('/portofolio-update/{id}',[project::class,'update'])->name('update.portofolio');
+    Route::get('/portofolio-delete/{id}', [project::class,'deleteProject'])->name('delete.portofolio');
+
 });
 
 Route::middleware('auth')->group(function () {
