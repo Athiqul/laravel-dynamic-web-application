@@ -8,6 +8,7 @@ use App\Http\Controllers\frontend\Home;
 use App\Http\Controllers\guest\About;
 use App\Http\Controllers\frontend\About as frontAbout;
 use App\Http\Controllers\guest\project;
+use App\Http\Controllers\frontend\portfolio;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,7 @@ Route::controller(Home::class)->group(function(){
 });
 
 Route::get('/about',[frontAbout::class,'index']);
+Route::get('/portfolio',[portfolio::class,'index']);
 
 
 

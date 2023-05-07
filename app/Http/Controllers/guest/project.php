@@ -58,7 +58,7 @@ class project extends Controller
                 'message'=>'Portofolio added Successfully',
             ];
 
-            return redirect()->route('dashboard')->with($noti);
+            return redirect()->route('list.portofolio')->with($noti);
 
         }catch(Exception $ex)
         {
@@ -117,9 +117,24 @@ class project extends Controller
 
                  //store new image
                  $new_image=md5(uniqid()).'.'.$file->getClientOriginalExtension();
+                 Image::make($file)->resize(1020,520)->save($path.$new_image);
+                 $check->image_link=$new_image;
 
             }
         }
+
+        $check->project_name=$request->project_name;
+        $check->project_title=$request->project_title;
+        $check->project_desc=$request->project_desc;
+
+        $check->save();
+
+        $noti=[
+            'alert_type'=>'info',
+            'message'=>'Portofolio updated',
+        ];
+
+        return redirect()->route('list.portofolio')->with($noti);
 
     }
 

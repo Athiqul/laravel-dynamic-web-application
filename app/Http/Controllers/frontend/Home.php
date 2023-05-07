@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\homeslider;
 use App\Models\AboutInfo;
 use App\Models\skillImages;
+use App\Models\projects;
 
 class Home extends Controller
 {
@@ -18,8 +19,9 @@ class Home extends Controller
         $about=AboutInfo::latest()->first();
         //SEND About images
         $skillImages=skillImages::where('status','=','1')->get();
-
+        // Project Portofolio
+        $portofolio=projects::all();
        
-        return view('guest.index',['home_slider'=>$homeSlider,'about'=>$about,'aboutImages'=>$skillImages]);
+        return view('guest.index',['home_slider'=>$homeSlider,'about'=>$about,'aboutImages'=>$skillImages,'portfolio'=>$portofolio]);
     }
 }
