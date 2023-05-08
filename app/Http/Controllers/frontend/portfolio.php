@@ -18,4 +18,14 @@ class portfolio extends Controller
        $images=skillImages::all();
        return view('guest.portfolio.index',compact('projects','images'));
     }
+
+    //Show Particular portofolio
+    public function show($id)
+    {
+        //show skil images
+        $images=skillImages::all();
+        //fetch particular portfolio 
+        $project=projects::find($id);
+        return view('guest.portfolio.portfolio',compact('images','project'));
+    }
 }

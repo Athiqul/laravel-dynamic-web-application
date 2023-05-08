@@ -9,6 +9,7 @@ use App\Http\Controllers\guest\About;
 use App\Http\Controllers\frontend\About as frontAbout;
 use App\Http\Controllers\guest\project;
 use App\Http\Controllers\frontend\portfolio;
+use App\Http\Controllers\guest\BlogCategory;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,12 @@ Route::controller(Home::class)->group(function(){
 });
 
 Route::get('/about',[frontAbout::class,'index']);
-Route::get('/portfolio',[portfolio::class,'index']);
+//portfolio 
+Route::controller(portfolio::class)->group(function(){
+    Route::get('/portfolio','index');
+    Route::get('/portfolio-details/{id}','show')->name('portfolio.details');
+});
+
 
 
 
@@ -64,6 +70,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/portofolio-edit/{id}',[project::class,'edit'])->name('edit.portofolio');
     Route::post('/portofolio-update/{id}',[project::class,'update'])->name('update.portofolio');
     Route::get('/portofolio-delete/{id}', [project::class,'deleteProject'])->name('delete.portofolio');
+
+    //blog category
+    Route::get('/blog-categories-list',[BlogCategory::class,'index'])->name('blog.categories');
+    Route::get('/create-blog-category',[BlogCategory::class,'create'])->name('blog.create.category');
+    Route::post('/create-blog-category',[BlogCategory::class,'store'])->name('blog.create.category');
+    Route::get('/blog-category-edit/{id}',[BlogCategory::class,'edit'])->name('blog.category.edit');
+    Route::post('/blog-category-edit/{id}',[BlogCategory::class,'update'])->name('blog.category.edit');
+    Route::get('/blog-category-delete/{id}',[BlogCategory::class,'delete'])->name('blog.category.delete');
 
 });
 

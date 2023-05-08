@@ -59,8 +59,9 @@
                         <div class="col-lg-6 col-md-10">
                             <div class="portfolio__inner__content">
                                 <h2 class="title"><a href="portfolio-details.html">{{$item->project_title}}</a></h2>
-                                  {!!$item->project_desc!!}
-                                <a href="portfolio-details.html" class="link">View Case Study</a>
+                                
+                                  {!!Str::limit($item->project_desc,300)!!}
+                                <a href="{{route('portfolio.details',$item->id)}}" class="link">View Case Study</a>
                             </div>
                         </div>
                     </div>
