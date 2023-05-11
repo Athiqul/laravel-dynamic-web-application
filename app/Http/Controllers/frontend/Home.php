@@ -8,6 +8,8 @@ use App\Models\homeslider;
 use App\Models\AboutInfo;
 use App\Models\skillImages;
 use App\Models\projects;
+use App\Models\BlogCategory;
+use App\Models\BlogModel;
 
 class Home extends Controller
 {
