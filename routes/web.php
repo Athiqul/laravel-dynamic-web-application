@@ -12,6 +12,7 @@ use App\Http\Controllers\guest\project;
 use App\Http\Controllers\frontend\portfolio;
 use App\Http\Controllers\guest\BlogCategory;
 use App\Http\Controllers\guest\Blogs;
+use App\Http\Controllers\guest\Footer;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,6 +95,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/edit-blog/{id}',[Blogs::class,'showBlog'])->name('blog.edit');
     Route::post('/update-blog/{id}',[Blogs::class,'updateBlog'])->name('blog.update');
     Route::get('/delete-blog/{id}',[Blogs::class,'delete'])->name('blog.delete');
+
+    //Footer
+    Route::get('/footer',[Footer::class,'create'])->name('footer');
+    Route::post('/footer',[Footer::class,'store'])->name('footer.update');
 
 });
 

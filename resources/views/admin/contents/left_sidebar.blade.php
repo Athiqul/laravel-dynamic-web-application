@@ -74,8 +74,15 @@
                     </ul>
                 </li>
 
-               
-
+                <li class="menu-title">Footer</li>
+                
+                <li>
+                    <a href="{{route('footer')}}" class="has-arrow waves-effect">
+                        <i class="fas fa-sort-amount-down-alt"></i>
+                        <span>Footer</span>
+                    </a>
+                    
+                </li>
 
 
             </ul>

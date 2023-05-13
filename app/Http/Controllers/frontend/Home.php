@@ -10,7 +10,6 @@ use App\Models\skillImages;
 use App\Models\projects;
 use App\Models\BlogCategory;
 use App\Models\BlogModel;
-
 class Home extends Controller
 {
     public function index()
@@ -25,6 +24,9 @@ class Home extends Controller
         $portofolio=projects::all();
         $blogs=BlogModel::join('blog_categories','blogs.cat_id','=','blog_categories.id')
         ->Select('blogs.*','blog_categories.category as category')->latest()->take(3)->get();
+
+        //calling footer
+
        
         return view('guest.index',['home_slider'=>$homeSlider,'about'=>$about,'aboutImages'=>$skillImages,'portfolio'=>$portofolio,"blogs"=>$blogs]);
     }
