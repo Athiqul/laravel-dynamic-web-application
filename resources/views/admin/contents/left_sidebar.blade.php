@@ -84,6 +84,16 @@
                     
                 </li>
 
+                <li class="menu-title">Contact</li>
+                
+                <li>
+                    <a href="{{route('customer.request')}}" class="has-arrow waves-effect">
+                        <i class=" fas fa-user-tie"></i>
+                        <span>Contact List</span>
+                    </a>
+                    
+                </li>
+
 
             </ul>
         </div>

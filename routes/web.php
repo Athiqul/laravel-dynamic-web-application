@@ -13,6 +13,8 @@ use App\Http\Controllers\frontend\portfolio;
 use App\Http\Controllers\guest\BlogCategory;
 use App\Http\Controllers\guest\Blogs;
 use App\Http\Controllers\guest\Footer;
+use App\Http\Controllers\guest\Contact;
+use App\Http\Controllers\frontend\ContactUser;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,7 +45,13 @@ Route::controller(frontBlog::class)->group(function(){
     Route::get('/blog-details/{id}','show')->name('blog.details');
     Route::get('/category-blogs/{id}','category')->name('blog.category');
 });
-
+//Contact
+//Blogs
+Route::controller(ContactUser::class)->group(function(){
+    Route::get('/contact-us','create')->name('contact.admin');
+    Route::post('/contact-us','store')->name('contact.admin');
+   
+});
 
 
 
@@ -99,6 +107,8 @@ Route::middleware('auth')->group(function(){
     //Footer
     Route::get('/footer',[Footer::class,'create'])->name('footer');
     Route::post('/footer',[Footer::class,'store'])->name('footer.update');
+    //Contact
+    Route::get('/customer-message',[Contact::class,'index'])->name('customer.request');
 
 });
 
