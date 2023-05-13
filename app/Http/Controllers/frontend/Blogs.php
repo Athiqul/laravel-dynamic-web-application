@@ -29,6 +29,10 @@ class Blogs extends Controller
     //Category wise Blogs
     public function category($cat_id)
     {
-
+         //find blog by category id
+         $type=BlogCategory::findorfail($cat_id)->category;
+         $blogs=BlogModel::Where('cat_id','=',$cat_id)->latest()->take(10)->get();
+         $categories=BlogCategory::latest()->take(5)->get();
+         return view('guest.blogs.all_blogs',compact('blogs','type','categories'));
     }
 }

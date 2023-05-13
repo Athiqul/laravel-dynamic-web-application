@@ -23,7 +23,9 @@ class Home extends Controller
         $skillImages=skillImages::where('status','=','1')->get();
         // Project Portofolio
         $portofolio=projects::all();
+        $blogs=BlogModel::join('blog_categories','blogs.cat_id','=','blog_categories.id')
+        ->Select('blogs.*','blog_categories.category as category')->latest()->take(3)->get();
        
-        return view('guest.index',['home_slider'=>$homeSlider,'about'=>$about,'aboutImages'=>$skillImages,'portfolio'=>$portofolio]);
+        return view('guest.index',['home_slider'=>$homeSlider,'about'=>$about,'aboutImages'=>$skillImages,'portfolio'=>$portofolio,"blogs"=>$blogs]);
     }
 }

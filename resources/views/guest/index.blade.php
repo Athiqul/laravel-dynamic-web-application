@@ -324,7 +324,9 @@
     <!-- testimonial-area-end -->
 
     <!-- blog-area -->
+    @if (count($blogs)>=0)
     @include('guest.content.blog_area')
+    @endif  
     <!-- blog-area-end -->
 
     <!-- contact-area -->

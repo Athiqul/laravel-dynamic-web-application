@@ -40,6 +40,7 @@ Route::controller(portfolio::class)->group(function(){
 Route::controller(frontBlog::class)->group(function(){
     Route::get('/blogs','index')->name('front.blogs');
     Route::get('/blog-details/{id}','show')->name('blog.details');
+    Route::get('/category-blogs/{id}','category')->name('blog.category');
 });
 
 

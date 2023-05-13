@@ -29,8 +29,13 @@
             <div class="row">
                 <div class="col-lg-8">
                     @php
-                        $tags='';
-                    @endphp
+                    $tags='';
+                @endphp
+                    @if ($blogs->isEmpty())
+                        <h4>No Blogs in this category</h4>
+                        @else
+                    
+                  
                     @foreach ($blogs as $item )
                     <div class="standard__blog__post">
                         <div class="standard__blog__thumb">
@@ -68,6 +73,7 @@
                             </ul>
                         </nav>
                     </div>
+                    @endif
                 </div>
                 <div class="col-lg-4">
                     <aside class="blog__sidebar">
@@ -99,7 +105,7 @@
                             <h4 class="widget-title">Categories</h4>
                             <ul class="sidebar__cat">
                                 @foreach ($categories as $item )
-                                <li class="sidebar__cat__item"><a href="blog.html">{{$item->category}}</a></li>
+                                <li class="sidebar__cat__item"><a href="{{route('blog.category',$item->id)}}">{{$item->category}}</a></li>
                                 @endforeach
                                
                                 
