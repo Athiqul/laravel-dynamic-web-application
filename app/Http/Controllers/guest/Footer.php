@@ -73,7 +73,7 @@ class Footer extends Controller
     }
   
 
-    //delete footer
+    //notification footer
     private function toasterNoti($type,$msg)
     {
         return [

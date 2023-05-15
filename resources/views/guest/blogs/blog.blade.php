@@ -1,4 +1,7 @@
 @extends('guest.guest_master')
+@section('title')
+    {{$blog->title}}|Athiqul Hasan Momin
+@endsection
 @section('content')
 <main>
 

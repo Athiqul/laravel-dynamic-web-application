@@ -25,9 +25,9 @@
                            @php
                                $serial=1;
                            @endphp
-                           @foreach ($portfolio as $item )
+                           @foreach ($portfolio as $key=> $item )
                            <tr>
-                            <td >{{$serial++}}</td>
+                            <td >{{++$key}}</td>
                             <td>{{$item->project_name}}</td>
                             <td ><img class="img-fluid" width="50" height="50" src="{{asset('uploads/projects/'.$item->image_link)}}" alt="" ></td>
                             

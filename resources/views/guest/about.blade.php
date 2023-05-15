@@ -1,5 +1,7 @@
-@extends('guest.guest_master');
-
+@extends('guest.guest_master')
+@section('title')
+    About|Athiqul Hasan Momin
+@endsection
 @section('content')
 <main>
 

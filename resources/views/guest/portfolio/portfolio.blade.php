@@ -1,4 +1,7 @@
 @extends('guest.guest_master')
+@section('title')
+{{$project->project_name}}|Athiqul Hasan Momin
+@endsection
 @section('content')
 <!-- main-area -->
 <main>

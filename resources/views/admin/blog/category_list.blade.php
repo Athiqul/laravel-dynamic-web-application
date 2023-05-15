@@ -20,12 +20,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                           @php
-                               $serial=1;
-                           @endphp
-                           @foreach ($categories as $category )
+                        
+                           @foreach ($categories as $key=>$category )
                            <tr>
-                            <td >{{$serial++}}</td>
+                            <td >{{++$key}}</td>
                             <td >{{$category->category}}</td>
                             
                             <td>

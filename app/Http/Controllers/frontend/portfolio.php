@@ -13,7 +13,7 @@ class portfolio extends Controller
     public function index()
     {
        //fetch project data
-       $projects= projects::all();
+       $projects= projects::paginate(3);
        //fetch skill images
        $images=skillImages::all();
        return view('guest.portfolio.index',compact('projects','images'));

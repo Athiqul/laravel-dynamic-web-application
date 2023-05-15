@@ -1,4 +1,7 @@
-@extends('guest.guest_master');
+@extends('guest.guest_master')
+@section('title')
+    Portfolio|Athiqul Hasan Momin
+@endsection
 @section('content')
 <main>
       <!-- breadcrumb-area -->
@@ -51,14 +54,14 @@
                     <div class="row gx-0 align-items-center">
                         <div class="col-lg-6 col-md-10">
                             <div class="portfolio__inner__thumb">
-                                <a href="portfolio-details.html">
+                                <a href="{{route('portfolio.details',$item->id)}}">
                                     <img src="{{asset('uploads/projects/'.$item->image_link)}}" alt="">
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-10">
                             <div class="portfolio__inner__content">
-                                <h2 class="title"><a href="portfolio-details.html">{{$item->project_title}}</a></h2>
+                                <h2 class="title"><a href="{{route('portfolio.details',$item->id)}}">{{$item->project_title}}</a></h2>
                                 
                                   {!!Str::limit($item->project_desc,300)!!}
                                 <a href="{{route('portfolio.details',$item->id)}}" class="link">View Case Study</a>
@@ -67,25 +70,14 @@
                     </div>
                 </div>
                 @endforeach
-                    
+                   
                 @endif
                 
                 
-                
+              
                 
             </div>
-            <div class="pagination-wrap">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#"><i class="far fa-long-arrow-left"></i></a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="far fa-long-arrow-right"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
+            {{$projects->links()}}
         </div>
     </section>
 

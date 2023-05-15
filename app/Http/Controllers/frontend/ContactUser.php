@@ -27,6 +27,16 @@ class ContactUser extends Controller
         ]);
 
         Contact::create($request->post());
+       
+
+        return redirect()->back()->with($this->toasterNoti('success','Thank you Sir! Your Query already submitted, Our Team will Contact with you soon'));
         
+    }
+    private function toasterNoti($type,$msg)
+    {
+        return [
+            "alert-type"=>$type,
+            "message"=>$msg
+        ];  
     }
 }

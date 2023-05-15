@@ -13,7 +13,7 @@ class Blogs extends Controller
     public function index()
     {
       $categories=BlogCategory::latest()->take(5)->get();
-      $blogs=BlogModel::latest()->take(5)->get();
+      $blogs=BlogModel::latest()->paginate(2);
       $type="All Blogs";
      
       return view('guest.blogs.all_blogs',compact('blogs','categories','type'));
@@ -31,7 +31,7 @@ class Blogs extends Controller
     {
          //find blog by category id
          $type=BlogCategory::findorfail($cat_id)->category;
-         $blogs=BlogModel::Where('cat_id','=',$cat_id)->latest()->take(10)->get();
+         $blogs=BlogModel::Where('cat_id','=',$cat_id)->latest()->paginate(2);
          $categories=BlogCategory::latest()->take(5)->get();
          return view('guest.blogs.all_blogs',compact('blogs','type','categories'));
     }

@@ -6,13 +6,13 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Contact List</h4>
+                <h4 class="card-title">Customer Request List</h4>
 
                 <div class="table-responsive">
                     @if (!$contactList->isEmpty())
                         
                   
-                    <table class="table table-editable table-nowrap align-middle table-edits">
+                    <table class="table  table-nowrap align-middle ">
                         <thead>
                             <tr >
                                 <th>SL.</th>
@@ -22,7 +22,6 @@
                                 <th>Subject</th>
                                 <th>Message</th>
                                 <th>Date</th>
-                                <th>status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,11 +40,9 @@
                             <td >{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</td>
                             
                             <td>
-                                <a href="{{route('edit.portofolio',$item->id)}}" class="btn btn-outline-info btn-sm edit" title="Edit Image">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
                                
-                                <a href="{{url('/portofolio-delete/'.$item->id)}}" class="btn btn-outline-danger btn-sm delete" id="delete" title="Delete Image">
+                               
+                                <a href="{{route('contact.delete',$item->id)}}" class="btn btn-outline-danger btn-sm delete" id="delete" title="Delete Image">
                                     <i class="fas fa-trash"></i>
                                 </a>
                                 

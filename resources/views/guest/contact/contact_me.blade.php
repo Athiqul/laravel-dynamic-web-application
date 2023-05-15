@@ -1,4 +1,7 @@
 @extends('guest.guest_master');
+@section('title')
+    Contact |Athiqul Hasan Momin
+@endsection
 @section('content')
 <main>
 
@@ -19,16 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="breadcrumb__wrap__icon">
-            <ul>
-                <li><img src="assets/img/icons/breadcrumb_icon01.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon02.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon03.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon04.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon05.png" alt=""></li>
-                <li><img src="assets/img/icons/breadcrumb_icon06.png" alt=""></li>
-            </ul>
-        </div>
+       
     </section>
     <!-- breadcrumb-area-end -->
 
@@ -41,7 +35,8 @@
     <!-- contact-area -->
     <div class="contact-area">
         <div class="container">
-            <form action="{{route('contact.admin')}}" method="POST" class="contact__form">
+            <form action="{{route('contact.admin')}}" method="post" class="contact__form">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <input type="text" placeholder="Enter your name*" name="customer_name">
@@ -140,4 +135,7 @@
     <!-- contact-area-end -->
 
 </main>
+
+    
+   
 @endsection

@@ -28,14 +28,14 @@ use App\Http\Controllers\frontend\ContactUser;
 
 // Frontend Routes
 Route::controller(Home::class)->group(function(){
-   Route::get('/','index');
+   Route::get('/','index')->name('home');
 
 });
 
-Route::get('/about',[frontAbout::class,'index']);
+Route::get('/about',[frontAbout::class,'index'])->name('about.page');
 //portfolio 
 Route::controller(portfolio::class)->group(function(){
-    Route::get('/portfolio','index');
+    Route::get('/portfolio','index')->name('portfolio.page');
     Route::get('/portfolio-details/{id}','show')->name('portfolio.details');
 });
 
@@ -50,6 +50,7 @@ Route::controller(frontBlog::class)->group(function(){
 Route::controller(ContactUser::class)->group(function(){
     Route::get('/contact-us','create')->name('contact.admin');
     Route::post('/contact-us','store')->name('contact.admin');
+    
    
 });
 
@@ -109,13 +110,10 @@ Route::middleware('auth')->group(function(){
     Route::post('/footer',[Footer::class,'store'])->name('footer.update');
     //Contact
     Route::get('/customer-message',[Contact::class,'index'])->name('customer.request');
+    Route::get('/contact-delete/{id}',[Contact::class,'deleteRequest'])->name('contact.delete');
 
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
 
 require __DIR__.'/auth.php';

@@ -17,11 +17,21 @@ class Contact extends Controller
     //Delete contact request
     public function deleteRequest($id)
     {
+              $contactList=ContactModel::findorfail($id);
+              $contactList->delete();
+              return redirect()->back()->with($this->toasterNoti('error','Item Deleted!'));
 
     }
     //Update status
     public function status($id)
     {
 
+    }
+    private function toasterNoti($type,$msg)
+    {
+        return [
+            "alert-type"=>$type,
+            "message"=>$msg
+        ];  
     }
 }

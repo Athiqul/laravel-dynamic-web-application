@@ -1,4 +1,7 @@
   <!-- header-area -->
+  @php
+      $currentRoute=Route::currentRouteName();
+  @endphp
   <header>
     <div id="sticky-header" class="menu__area transparent-header">
         <div class="container custom-container">
@@ -8,24 +11,21 @@
                     <div class="menu__wrap">
                         <nav class="menu__nav">
                             <div class="logo">
-                                <a href="index.html" class="logo__black"><img src="{{asset('frontend/assets/img/logo/logo_black.png')}}" alt=""></a>
-                                <a href="index.html" class="logo__white"><img src="{{asset('frontend/assets/img/logo/logo_white.png')}}" alt=""></a>
+                                <a href="{{route('home')}}" class="logo__black"><img src="{{asset('frontend/assets/img/logo/logo_black.png')}}" alt=""></a>
+                                <a href="{{route('home')}}" class="logo__white"><img src="{{asset('frontend/assets/img/logo/logo_white.png')}}" alt=""></a>
                             </div>
                             <div class="navbar__wrap main__menu d-none d-xl-flex">
                                 <ul class="navigation">
-                                    <li class="active"><a href="{{url('/')}}">Home</a></li>
-                                    <li><a href="{{url('/about')}}">About</a></li>
-                                    <li><a href="services-details.html">Services</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Portfolio</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="{{url('/portfolio')}}">Portfolio</a></li>
-                                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="{{route('front.blogs')}}">Our Blog</a>
+                                    <li class="{{$currentRoute=='home'?'active':''}}"><a href="{{route('home')}}">Home</a></li>
+                                    <li class="{{$currentRoute=='about.page'?'active':''}}"><a href="{{route('about.page')}}">About</a></li>
+                                    <li ><a href="services-details.html">Services</a></li>
+                                    <li class="{{$currentRoute=='portfolio.page'?'active':''}}"><a href="{{route('portfolio.page')}}">Portfolio</a>
                                        
                                     </li>
-                                    <li><a href="{{route('contact.admin')}}">contact me</a></li>
+                                    <li class="{{$currentRoute=='front.blogs'?'active':''}}"><a href="{{route('front.blogs')}}">Our Blog</a>
+                                       
+                                    </li>
+                                    <li class="{{$currentRoute=='contact.admin'?'active':''}}"><a href="{{route('contact.admin')}}">contact me</a></li>
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
